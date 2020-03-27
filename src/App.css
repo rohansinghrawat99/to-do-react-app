@@ -1,0 +1,43 @@
+.Container {
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100vh;
+  margin-top: 50px;
+  margin-left: 25%;
+  background-color: cornflowerblue;
+  margin-top: 0px;
+  border-radius: 10px;
+}
+
+input{
+  margin-top: 50px;
+  width: 50%;
+}
+
+AddTaskButton {
+  padding: 10px;
+}
+
+.Task {
+  display: flex;
+  margin-left: 25%;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 20px;
+  background-color: white;
+  width: 49%;
+  height: 20px;
+  border: black 2px solid;
+}
+
+.DeleteButton {
+  border-radius: 10px;
+  margin-top: -1px;
+  padding-top: 20px;
+  margin-left: auto;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+}
