@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import './App.css';
 
 let allTask: string[] = [];
 let activeTask: string[] = [];
-let completedTask: string[] =[];
+let completedTask: string[] = [];
 
 const App = () => {
     const [value, setValue] = useState<string[]>([]);
@@ -12,17 +12,16 @@ const App = () => {
 
     const allTasks = () => {
         setValue(allTask);
-    }
+    };
 
-    const handleSubmit = (event:any) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (newWord == "") {
+        if (!newWord) {
             alert("The task is empty");
-        }
-        else {
+        } else {
             update(newWord);
         }
-    }
+    };
 
 
     const update = (newTask: string) => {
@@ -33,14 +32,14 @@ const App = () => {
     };
 
     const deleteTask = (index: number) => {
-        activeTask.splice(index,1);
+        activeTask.splice(index, 1);
         allTask.splice(index, 1);
         const temp: string[] = [...allTask];
         setValue(temp);
     };
 
     const completeTask = (index: number) => {
-        const spliced : string[] = activeTask.splice(index,1);
+        const spliced: string[] = activeTask.splice(index, 1);
         completedTask = [...completedTask, ...spliced];
         const temp: string[] = [...activeTask];
         setValue(temp);
@@ -48,25 +47,25 @@ const App = () => {
 
     const completedTasks = () => {
         setValue(completedTask);
-    }
+    };
 
     const activeTasks = () => {
         setValue(activeTask);
-    }
+    };
 
     return <div className="Full">
         <div className="Container">
-            <form onSubmit={event => handleSubmit(event)}>
-            <input type="text" id="input-box" value={newWord} onChange={event => setWord(event.target.value)}/>
-            <br/>
-            <button className="AddTaskButton" type="submit">Add Task</button>
+            <form onSubmit={(event) => handleSubmit(event)}>
+                <input type="text" id="input-box" value={newWord} onChange={event => setWord(event.target.value)}/>
+                <br/>
+                <button className="AddTaskButton" type="submit">Add Task</button>
             </form>
             <br/>
             <h2>{value.map((v, index) =>
                 <div key={index} className="Task">
                     <span>{v}</span>
-                    <button className="CompletedButton" onClick={() => completeTask(index)}></button>
-                    <button className="DeleteButton" onClick={() => deleteTask(index)}></button>
+                    <button className="CompletedButton" onClick={() => completeTask(index)}/>
+                    <button className="DeleteButton" onClick={() => deleteTask(index)}/>
                 </div>
             )}
             </h2>
