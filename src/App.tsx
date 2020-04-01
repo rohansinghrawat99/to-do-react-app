@@ -7,10 +7,11 @@ let completedTask: string[] = [];
 
 const App = () => {
     const [value, setValue] = useState<string[]>([]);
-
+    const [isComplete, setStatue] = useState(false)
     const [newWord, setWord] = useState("");
 
     const allTasks = () => {
+        setStatue(false);
         setValue(allTask);
     };
 
@@ -46,10 +47,12 @@ const App = () => {
     };
 
     const completedTasks = () => {
+        setStatue(true);
         setValue(completedTask);
     };
 
     const activeTasks = () => {
+        setStatue(false);
         setValue(activeTask);
     };
 
@@ -64,7 +67,9 @@ const App = () => {
             <h2>{value.map((v, index) =>
                 <div key={index} className="Task">
                     <span>{v}</span>
-                    <button className="CompletedButton" onClick={() => completeTask(index)}/>
+                    {!isComplete ?
+                        <button className="CompletedButton" onClick={() => completeTask(index)}/>
+                        : <></>}
                     <button className="DeleteButton" onClick={() => deleteTask(index)}/>
                 </div>
             )}
